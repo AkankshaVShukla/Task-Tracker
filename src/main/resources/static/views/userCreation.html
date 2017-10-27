@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Task Tracker</title>
+<style type="text/css">
+tr.spaceUnder > td
+{
+  padding-bottom: 1em;
+}
+.ticket-form {
+max-width: 500px;
+margin: 0 auto;
+}
+.form-control{
+display:inline-block;
+width:100%;
+padding: 6px 12px;
+}
+.submit{
+color: #fff;
+width : 50%;
+    background-color : #286090;
+    border-color : #204d74;
+	padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 6px;
+    align-items : center;
+}
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    height: 30px;
+}
+</style>
+  </head>
+<body ng-controller="userCreationController as userCtrl">
+	<div class="container">
+		<form class="ticket-form" ng-submit="createUser()">
+			<h2>User Creation</h2>
+			<table style="width: 90%;">
+				<tr class="spaceUnder">
+					<td><label for="inputName" class="sr-only">Name</label>
+					</td>
+					<td><input type="text" id="inputName" class="form-control"
+						placeholder="Name" required autofocus
+						ng-model="userCtrl.inputData.name"></td>
+				</tr>
+				<tr class="spaceUnder">
+					<td><label for="inputEmail" class="sr-only">Email id</label>
+					</td>
+					<td><input type="text" id="inputEmail" class="form-control"
+						placeholder="Email" required autofocus
+						ng-model="userCtrl.inputData.email"></td>
+				</tr>
+				<tr class="spaceUnder">
+					<td><label for="inputUsername" class="sr-only">Username</label>
+					</td>
+					<td><input type="text" id="inputUsername" class="form-control"
+						placeholder="Username" required autofocus
+						ng-model="userCtrl.inputData.username"></td>
+				</tr>	
+				<tr class="spaceUnder">
+					<td><label for="inputPriority" class="sr-only">User Role</label>
+					</td>
+					<td><label data-ng-repeat="i in ['Manager', 'Worker']"><input
+							type="radio" name="test" ng-model="$parent.radioValue"
+							value="{{i}}" />{{i}}</label></td>
+				</tr>		
+				<tr>
+					<td>
+					<h5>Note : Default Password = Password@123</h5>
+					</td>				
+				</tr>				
+			</table>
+			<div align="center">
+			<div class="alert alert-danger" role="alert" ng-show="errorMsg">{{errorMsg}}</div>	
+			<br>		
+				<button class="submit" type="submit">Create</button>
+			</div>
+		</form>
+	</div>
+	<script type="text/javascript" src="/js/angular.min.js"></script>
+	<script type="text/javascript" src="/js/angular-route.min.js"></script>
+	<script type="text/javascript" src="/js/app.js"></script>
+</body>
+</html>

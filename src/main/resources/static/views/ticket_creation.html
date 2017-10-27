@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Task Tracker</title>
+<style type="text/css">
+tr.spaceUnder > td
+{
+  padding-bottom: 1em;
+}
+.ticket-form {
+max-width: 500px;
+margin: 0 auto;
+}
+.form-control{
+display:inline-block;
+width:100%;
+padding: 6px 12px;
+}
+.submit{
+color: #fff;
+width : 50%;
+    background-color : #286090;
+    border-color : #204d74;
+padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 6px;
+    align-items : center;
+}
+</style>
+  </head>
+<body ng-controller="ticketController as postCtrl">
+	<div class="container">
+		<form class="ticket-form" ng-submit="createTicket()">
+			<h2>Ticket Creation</h2>
+			<table style="width: 120%;">
+				<tr class="spaceUnder">
+					<td><label for="inputSubject" class="sr-only">Subject</label>
+					</td>
+					<td><input type="text" id="inputSubject" class="form-control"
+						placeholder="Subject" required autofocus
+						ng-model="postCtrl.inputData.subject"></td>
+				</tr>
+				<tr class="spaceUnder">
+					<td><label for="inputDescription" class="sr-only">Description</label>
+					</td>
+					<td><textarea name="description" class="form-control"
+							placeholder="Description" required
+							ng-model="postCtrl.inputData.description"></textarea></td>
+				</tr>
+				<tr class="spaceUnder">
+					<td><label for="inputPriority" class="sr-only">Priority
+					</label></td>
+					<td><label data-ng-repeat="i in ['Low', 'Medium', 'High']"><input
+							type="radio" name="test" ng-model="$parent.radioValue"
+							value="{{i}}" />{{i}}</label></td>
+				</tr>
+				<tr class="spaceUnder">
+					<td><label for="inputAssignedTo" class="sr-only">Assigned To</label></td>
+					<td><select ng-model="selectedUser"
+						ng-options="item.name for item in usersListOnCreateTicket">
+							<option value="">Select</option>
+					</select></td>
+				</tr>
+			</table>
+
+			<div class="alert alert-danger" role="alert" ng-show="errorMsg">{{errorMsg}}</div>
+			<div align="center">
+				<button class="submit" type="submit">Create</button>
+			</div>
+
+		</form>
+	</div>
+	<script type="text/javascript" src="/js/angular.min.js"></script>
+	<script type="text/javascript" src="/js/angular-route.min.js"></script>
+	<script type="text/javascript" src="/js/app.js"></script>
+</body>
+</html>
